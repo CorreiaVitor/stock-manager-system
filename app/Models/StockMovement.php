@@ -7,7 +7,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StockMovement extends Model
 {
-    public function product() : BelongsTo
+
+    protected $fillable = [
+        'type',
+        'quantity',
+        'description',
+        'moved_at'
+    ];
+
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
