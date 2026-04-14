@@ -9,8 +9,11 @@ class StockMovement extends Model
 {
 
     protected $fillable = [
+        'product_id',
         'type',
         'quantity',
+        'previous_quantity',
+        'current_quantity',
         'description',
     ];
 
