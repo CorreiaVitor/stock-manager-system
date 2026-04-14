@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('restrict');
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedInteger('minimum_stock')->default(0);
