@@ -12,7 +12,6 @@ class StockMovement extends Model
         'type',
         'quantity',
         'description',
-        'moved_at'
     ];
 
     public function product(): BelongsTo

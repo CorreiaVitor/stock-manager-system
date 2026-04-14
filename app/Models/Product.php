@@ -22,7 +22,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function StockMovement() : HasMany
+    public function StockMovements() : HasMany
     {
         return $this->hasMany(StockMovement::class);
     }
