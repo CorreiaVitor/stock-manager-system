@@ -20,4 +20,3 @@ Route::get('/produtos/{product}/editar', [ProductController::class, 'edit'])->na
 Route::put('/produtos/{product}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/produtos/{product}/deletar', [ProductController::class, 'destroy'])->name('products.destroy');
 
-Route::get('produtos/{product}/stock-movements', [StockMovementController::class, 'store'])->name('products.stock-movements.store');
