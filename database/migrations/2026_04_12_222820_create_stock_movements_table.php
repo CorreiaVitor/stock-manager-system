@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('stock_movements', function (Blueprint $table) {
             $table->id();
-            $table->foreignid('product_id')->constrained('products')->cascadeOnDelete();
-            $table->string('type');
+            $table->foreignid('product_id')->constrained('products')->restrictOnDelete();
+            $table->string('type', 10);
             $table->unsignedInteger('quantity');
+            $table->unsignedInteger('previous_quantity');
+            $table->unsignedInteger('current_quantity');
             $table->text('description')->nullable();
-            $table->timestamp('moved_at');
             $table->timestamps();
         });
     }
