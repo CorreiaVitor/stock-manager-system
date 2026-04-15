@@ -115,7 +115,7 @@
                                     <td class="text-end pe-4">
                                         <div class="d-inline-flex gap-2">
                                             <a href="{{ route('products.edit', $product->id) }}"
-                                                class="btn btn-sm btn-outline-secondary">
+                                                class="btn btn-sm btn-outline-warning">
                                                 Editar
                                             </a>
 
