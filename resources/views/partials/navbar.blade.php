@@ -44,6 +44,14 @@
                         Produtos
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link {{ request()->routeIs('stock-movements.*') ? 'active fw-semibold' : '' }}"
+                        href="{{ route('stock-movements.create') }}"
+                    >
+                       Movimentações
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
