@@ -24,23 +24,23 @@ class StoreStockMovementRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'product_id' => ['required', 'integer', 'exists:products,id'],
             'type' => ['required', Rule::in(['entry', 'exit'])],
-            'quantity' => ['required', 'integer', 'min:1'],
+            'movement_quantity' => ['required', 'integer', 'min:1'],
             'description' => ['nullable', 'string'],
-            'moved_at' => ['nullable', 'date']
         ];
     }
 
     public function messages(): array
     {
         return [
+            'product_id.required' => 'O produto é obrigatório.',
             'type.required' => 'O tipo da movimentação é obrigatório.',
-            'type.in' => 'O tipo da movimentação deve ser entry ou exit.',
-            'quantity.required' => 'A quantidade é obrigatória.',
-            'quantity.integer' => 'A quantidade deve ser um número inteiro.',
-            'quantity.min' => 'A quantidade deve ser maior que zero.',
+            'type.in' => 'O tipo da movimentação deve ser entrada ou saida.',
+            'movement_quantity.required' => 'A quantidade é obrigatória.',
+            'movement_quantity.integer' => 'A quantidade deve ser um número inteiro.',
+            'movement_quantity.min' => 'A quantidade deve ser maior que zero.',
             'description.string' => 'A descrição deve ser um texto válido.',
-            'moved_at.date' => 'A data da movimentação deve ser uma data válida.',
         ];
     }
 }
