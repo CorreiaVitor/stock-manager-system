@@ -35,9 +35,9 @@
                 </div>
 
                 <div class="card-body p-4">
-                    <form action="{{ $formAction ?? '#' }}" method="POST">
+                    <form action="{{ route('stock-movements.store') }}" method="POST">
                         @csrf
-
+                        @method('POST')
                         @include('stock-movements._form')
                     </form>
                 </div>

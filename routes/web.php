@@ -21,5 +21,6 @@ Route::put('/produtos/{product}', [ProductController::class, 'update'])->name('p
 Route::delete('/produtos/{product}/deletar', [ProductController::class, 'destroy'])->name('products.destroy');
 
 Route::get('/movimentacoes-de-estoque', [StockMovementController::class, 'index'])->name('stock-movements.index');
-Route::get('/movimentacoes-de-estoque/salvar', [StockMovementController::class, 'create'])->name('stock-movements.create');
+Route::get('/movimentacoes-de-estoque/criar', [StockMovementController::class, 'create'])->name('stock-movements.create');
+Route::post('/movimentacoes-de-estoque/salvar', [StockMovementController::class, 'store'])->name('stock-movements.store');
 

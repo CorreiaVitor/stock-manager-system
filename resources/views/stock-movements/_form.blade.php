@@ -26,7 +26,7 @@
     <div class="col-md-4">
         <label for="quantity" class="form-label fw-semibold">Quantidade</label>
 
-        <input type="number" min="1" name="quantity" id="quantity" class="form-control"
+        <input type="number" min="1" name="movement_quantity" id="movement_quantity" class="form-control"
             value="{{ old('quantity', $movement->quantity ?? '') }}" placeholder="Ex: 10">
     </div>
 
