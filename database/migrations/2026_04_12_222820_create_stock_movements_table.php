@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('stock_movements', function (Blueprint $table) {
             $table->id();
             $table->foreignid('product_id')->constrained('products')->restrictOnDelete();
+            $table->foreignId('user_id')->constrained()->onDelete('restrict');
             $table->string('type', 10);
             $table->unsignedInteger('quantity');
             $table->unsignedInteger('previous_quantity');

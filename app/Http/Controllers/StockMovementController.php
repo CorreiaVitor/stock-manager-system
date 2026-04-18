@@ -85,4 +85,6 @@ class StockMovementController extends Controller
 
         return to_route('stock-movements.index')->with('success', 'Movimentação registrada com sucesso.');
     }
+
+    
 }
