@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+@auth
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
     <div class="container">
         <a class="navbar-brand fw-semibold" href="{{ url('/') }}">
             Controle de Estoque
@@ -84,3 +85,4 @@
         </div>
     </div>
 </nav>
+@endauth
