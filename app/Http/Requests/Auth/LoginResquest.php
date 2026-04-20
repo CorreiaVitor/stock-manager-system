@@ -14,7 +14,7 @@ class LoginResquest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -31,7 +31,7 @@ class LoginResquest extends FormRequest
         ];
     }
 
-    public function authenticated() : void
+    public function authenticate() : void
     {
         $credentials = $this->only('email', 'password');
         $remember = $this->boolean('remember');
