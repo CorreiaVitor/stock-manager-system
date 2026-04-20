@@ -76,6 +76,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product) : RedirectResponse
     {
+        if ($product->StockMovements()->exists()) {
+           return to_route('products.index')->with('error', 'O produto não pode ser excluido.');
+        }
+
         $product->delete();
 
         return to_route('products.index')->with('success', 'Produto deletado com sucesso!');
