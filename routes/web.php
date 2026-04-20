@@ -8,24 +8,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::view('/', 'welcome');
-Route::get('/categorias', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('/categorias/criar', [CategoryController::class, 'create'])->name('categories.create');
-Route::post('/categorias/salvar', [CategoryController::class, 'store'])->name('categories.store');
-Route::get('/categorias/{category}/editar', [CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('/categorias/{category}', [CategoryController::class, 'update'])->name('categories.update');
-Route::delete('/categorias/{category}/deletar', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::resourceVerbs([
+    'create' => 'criar',
+    'edit' => 'editar',
+]);
 
-Route::get('/produtos', [ProductController::class, 'index'])->name('products.index');
-Route::get('/produtos/criar', [ProductController::class, 'create'])->name('products.create');
-Route::post('/produtos/salvar', [ProductController::class, 'store'])->name('products.store');
-Route::get('/produtos/{product}/editar', [ProductController::class, 'edit'])->name('products.edit');
-Route::put('/produtos/{product}', [ProductController::class, 'update'])->name('products.update');
-Route::delete('/produtos/{product}/deletar', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::middleware('auth')->group(function () {
+    Route::view('/', 'welcome');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::get('/movimentacoes-de-estoque', [StockMovementController::class, 'index'])->name('stock-movements.index');
-Route::get('/movimentacoes-de-estoque/criar', [StockMovementController::class, 'create'])->name('stock-movements.create');
-Route::post('/movimentacoes-de-estoque/salvar', [StockMovementController::class, 'store'])->name('stock-movements.store');
+    Route::resource('/categorias', CategoryController::class)
+        ->except(['show'])
+        ->names('categories')
+        ->parameters(['categorias' => 'category']);
 
+    Route::resource('/produtos', ProductController::class)
+        ->except(['show'])
+        ->names('products')
+        ->parameters(['produtos' => 'product']);
+
+    Route::resource('/movimentacoes-de-estoque', StockMovementController::class)
+        ->except(['edit', 'destroy', 'show', 'update'])
+        ->names('stock-movements');
+});
