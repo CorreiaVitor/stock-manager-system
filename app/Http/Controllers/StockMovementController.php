@@ -20,7 +20,7 @@ class StockMovementController extends Controller
     public function index(Request $request)
     {
         $products = Product::query()->get();
-        $movements = StockMovement::query()->with('product')
+        $movements = StockMovement::query()->with('product', 'user')
 
             ->when($request->filled('product_id'), fn($query) => $query
                 ->where('product_id', $request->integer('product_id')
@@ -51,7 +51,7 @@ class StockMovementController extends Controller
 
         $validated = $request->validated();
 
-        DB::transaction(function () use ($validated) {
+        DB::transaction(function () use ($validated, $request) {
 
             $product = Product::lockForUpdate()
                 ->findOrFail($validated['product_id']);
@@ -69,6 +69,7 @@ class StockMovementController extends Controller
 
             StockMovement::create([
                 'product_id' => $product->id,
+                'user_id' => $request->user()->id,
                 'type' => $validated['type'],
                 'quantity' => $validated['movement_quantity'],
                 'previous_quantity' => $this->previousQuantity,
