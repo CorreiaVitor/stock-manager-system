@@ -112,6 +112,11 @@
                                 Registrado em {{ $movement->created_at ?? '—' }}
                             </div>
 
+                            <div class="text-muted small mb-2">
+                                Registrado em {{ $movement->created_at ?? '—' }} por
+                                {{ $movement->user->name ?? 'Sistema' }}
+                            </div>
+
                             <div class="row g-3 small">
                                 <div class="col-sm-4">
                                     <div class="text-muted">Quantidade</div>
@@ -148,4 +153,13 @@
             @endforelse
         </div>
     </div>
+    @if (
+        $movements instanceof \Illuminate\Contracts\Pagination\Paginator ||
+            $movements instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator)
+        @if ($movements->hasPages())
+            <div class="mt-4 d-flex justify-content-center">
+                {{ $movements}}
+            </div>
+        @endif
+    @endif
 @endsection
