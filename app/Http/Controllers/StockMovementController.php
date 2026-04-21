@@ -8,8 +8,6 @@ use App\Models\StockMovement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use League\Config\Exception\ValidationException as ExceptionValidationException;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class StockMovementController extends Controller
 {
@@ -23,8 +21,10 @@ class StockMovementController extends Controller
         $movements = StockMovement::query()->with('product', 'user')
 
             ->when($request->filled('product_id'), fn($query) => $query
-                ->where('product_id', $request->integer('product_id')
-            ))
+                ->where(
+                    'product_id',
+                    $request->integer('product_id')
+                ))
             ->when($request->filled('type'), function ($query) use ($request) {
                 $query->where('type', $request->input('type'));
             })
@@ -35,7 +35,10 @@ class StockMovementController extends Controller
 
             ->when($request->filled('date_to'), function ($query) use ($request) {
                 $query->whereDate('created_at', '<=', $request->input('date_to'));
-            })->latest()->get();
+            })
+            ->latest()
+            ->paginate(3)
+            ->withQueryString();
 
         return view('stock-movements.index', compact('products', 'movements'));
     }
@@ -86,6 +89,4 @@ class StockMovementController extends Controller
 
         return to_route('stock-movements.index')->with('success', 'Movimentação registrada com sucesso.');
     }
-
-    
 }
