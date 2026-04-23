@@ -27,7 +27,6 @@ Route::middleware('auth')->group(function () {
         ->parameters(['categorias' => 'category']);
 
     Route::resource('/produtos', ProductController::class)
-        ->except(['show'])
         ->names('products')
         ->parameters(['produtos' => 'product']);
 
