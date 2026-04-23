@@ -49,6 +49,12 @@ class ProductController extends Controller
         return to_route('products.index')->with('success', 'Produto cadastrado com sucesso.');
     }
 
+    public function show(Product $product)
+    {
+        $movements = $product->StockMovements()->latest()->with('user')->paginate(3);
+        return view('products.show', compact('product', 'movements', ));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
