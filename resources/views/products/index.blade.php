@@ -116,7 +116,7 @@
                                         <div class="d-inline-flex gap-2">
                                             <a href="{{ route('products.show', $product) }}"
                                                 class="btn btn-sm btn-outline-primary">
-                                                Ver
+                                                Detalhar
                                             </a>
                                             <a href="{{ route('products.edit', $product->id) }}"
                                                 class="btn btn-sm btn-outline-warning">
