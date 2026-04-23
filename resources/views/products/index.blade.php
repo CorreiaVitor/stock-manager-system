@@ -114,6 +114,10 @@
                                     </td>
                                     <td class="text-end pe-4">
                                         <div class="d-inline-flex gap-2">
+                                            <a href="{{ route('products.show', $product) }}"
+                                                class="btn btn-sm btn-outline-primary">
+                                                Ver
+                                            </a>
                                             <a href="{{ route('products.edit', $product->id) }}"
                                                 class="btn btn-sm btn-outline-warning">
                                                 Editar
