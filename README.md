@@ -14,6 +14,8 @@ O projeto foi construído com foco principal no gerenciamento de **categorias** 
 - uso de migrations
 - estruturação de rotas, controllers e views
 
+Com a evolução do projeto, o sistema também passou a contar com **autenticação de usuários**, **dashboard administrativo**, **controle de movimentações de estoque** e **rastreio do usuário responsável por cada entrada ou saída registrada**.
+
 ## Funcionalidades implementadas
 
 Atualmente, o sistema possui:
@@ -27,6 +29,22 @@ Atualmente, o sistema possui:
 - edição de produtos
 - exclusão de produtos
 - associação entre produtos e categorias
+- página de detalhes do produto
+- histórico de movimentações por produto
+- controle de entradas de estoque
+- controle de saídas de estoque
+- atualização automática da quantidade em estoque
+- bloqueio de saída quando a quantidade solicitada é maior que o estoque disponível
+- registro de estoque anterior e estoque atual em cada movimentação
+- listagem geral do histórico de movimentações
+- filtros de movimentações por produto, tipo e período
+- paginação no histórico de movimentações
+- autenticação de usuários com login e logout
+- proteção de rotas para usuários autenticados
+- registro do usuário responsável por cada movimentação de estoque
+- dashboard com visão geral do sistema
+- exibição de indicadores gerais, como total de categorias, produtos, produtos com estoque baixo e movimentações do dia
+- listagem das últimas movimentações no dashboard
 
 ## Tecnologias utilizadas
 
@@ -171,16 +189,6 @@ Alguns exemplos úteis:
 ```bash
 ./vendor/bin/sail stop
 ```
-
-## Próximos passos
-
-Algumas evoluções previstas para o projeto são:
-
-- melhoria da interface
-- refinamento da experiência de uso
-- ampliação das regras de negócio
-- novas funcionalidades relacionadas ao controle de estoque
-- evolução da estrutura para uma base ainda mais próxima de um sistema real
 
 ## Autor
 
